@@ -4,11 +4,10 @@ import pandas as pd
 from life_expectancy.cleaning import clean_data
 from . import OUTPUT_DIR
 
-import pytest
-
 
 def test_clean_data(pt_life_expectancy_expected):
-    """Run the `clean_data` function and compare the output to the expected output"""
+    """Run the `clean_data` function and compare
+    the output to the expected output"""
     clean_data()
     pt_life_expectancy_actual = pd.read_csv(
         OUTPUT_DIR / "pt_life_expectancy.csv"
@@ -18,8 +17,9 @@ def test_clean_data(pt_life_expectancy_expected):
     )
 
 
-def test_clean_data_argparse(pt_life_expectancy_expected):
-    """Run the `clean_data` function and compare the output to the expected output"""
+def test_clean_data_argparse():
+    """Run the `clean_data` function and compare the output
+    has results where the region is AL"""
     clean_data("AL")
     al_life_expectancy_actual = pd.read_csv(
         OUTPUT_DIR / "al_life_expectancy.csv"
