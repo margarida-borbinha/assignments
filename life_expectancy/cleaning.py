@@ -7,6 +7,8 @@ import argparse
 import pathlib
 import pandas as pd
 
+FILE_DIR = pathlib.Path(__file__).parent.resolve()
+
 
 def load_data() -> pd.DataFrame:
     """Loads the dataframe containing the raw
@@ -16,10 +18,8 @@ def load_data() -> pd.DataFrame:
         pd.DataFrame: Raw life expectancy dataframe
     """
 
-    file_dir = pathlib.Path(__file__).parent.resolve()
-
     data = pd.read_csv(
-        f"{file_dir}/data/eu_life_expectancy_raw.tsv", sep="\t"
+        f"{FILE_DIR}/data/eu_life_expectancy_raw.tsv", sep="\t"
     )
 
     return data
@@ -31,14 +31,12 @@ def save_data(data: pd.DataFrame, region: Optional[str] = "PT") -> None:
 
     Args:
         data (pd.DataFrame): The dataframe to be saved
-        region (Optional[str], optional): The region used for filtering the 
+        region (Optional[str], optional): The region used for filtering the
             data is the prefix of the file name. Defaults to "PT".
     """
 
-    file_dir = pathlib.Path(__file__).parent.resolve()
-
     data.to_csv(
-        f"{file_dir}/data/{region.lower()}_life_expectancy.csv",
+        f"{FILE_DIR}/data/{region.lower()}_life_expectancy.csv",
         index=False
     )
 
