@@ -1,7 +1,8 @@
+"""Script to generate a smaller data sample"""
 from life_expectancy.cleaning import clean_data, load_data
 
 data = load_data("./eu_life_expectancy_raw.tsv")
-data = data.sample(1000)
+data = data.sample(1000, random_state=42)
 data.to_csv("./eu_life_expectancy_sample.tsv", sep="\t", index=None)
 
 data = clean_data(data, "PT")

@@ -1,3 +1,4 @@
+"""Tests for the I/O module"""
 from unittest.mock import Mock, patch
 
 import pandas as pd
@@ -5,8 +6,8 @@ import pandas as pd
 from life_expectancy.io import load_data, save_data
 
 
-def to_csv(*args, **kwargs) -> None:
-    print("Saving file")
+def to_csv(file_path: str) -> None:
+    print(f"Saving file {file_path}")
 
 
 def test_load(life_expectancy):
