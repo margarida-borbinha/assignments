@@ -25,9 +25,7 @@ def load_data(
     return data
 
 
-def save_data(
-    data: pd.DataFrame, path: str, region: Optional[str] = "PT"
-) -> None:
+def save_data(data: pd.DataFrame, region: Optional[str] = "PT") -> None:
     """Saves the given data in the appropriate folder with the
         name following the name convention {region}_life_expectancy.csv
 
