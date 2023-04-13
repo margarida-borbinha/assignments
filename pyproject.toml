@@ -22,3 +22,9 @@ omit = [
 
 [tool.coverage.report]
 fail_under = 80
+
+[tool.pylint.MASTER]
+ignore-paths = [
+    "life_expectancy/tests/",
+    "life_expectancy/setup.py"
+]

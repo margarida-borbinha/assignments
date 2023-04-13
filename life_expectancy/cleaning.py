@@ -2,43 +2,12 @@
 Cleaning module
 """
 
-from typing import Optional
 import argparse
-import pathlib
+from typing import Optional
+
 import pandas as pd
 
-FILE_DIR = pathlib.Path(__file__).parent.resolve()
-
-
-def load_data() -> pd.DataFrame:
-    """Loads the dataframe containing the raw
-        European life expectancy data
-
-    Returns:
-        pd.DataFrame: Raw life expectancy dataframe
-    """
-
-    data = pd.read_csv(
-        f"{FILE_DIR}/data/eu_life_expectancy_raw.tsv", sep="\t"
-    )
-
-    return data
-
-
-def save_data(data: pd.DataFrame, region: Optional[str] = "PT") -> None:
-    """Saves the given data in the appropriate folder with the
-        name following the name convention {region}_life_expectancy.csv
-
-    Args:
-        data (pd.DataFrame): The dataframe to be saved
-        region (Optional[str], optional): The region used for filtering the
-            data is the prefix of the file name. Defaults to "PT".
-    """
-
-    data.to_csv(
-        f"{FILE_DIR}/data/{region.lower()}_life_expectancy.csv",
-        index=False
-    )
+from life_expectancy.io import load_data, save_data
 
 
 def clean_data(data, region: Optional[str] = "PT") -> pd.DataFrame:
@@ -91,16 +60,20 @@ def clean_data(data, region: Optional[str] = "PT") -> pd.DataFrame:
     return data
 
 
-def main(region: Optional[str] = "PT"):
+def main(
+    file: Optional[str] = "eu_life_expectancy_raw.tsv",
+    region: Optional[str] = "PT",
+):
     """The main function that loads, cleans and saves in one go.
 
     Args:
         region (Optional[str], optional): Region to filter the dataset on.
             Defaults to "PT".
     """
-    data = load_data()
+    data = load_data(file)
     data = clean_data(data, region)
     save_data(data, region)
+    return data
 
 
 if __name__ == "__main__":  # pragma: no cover
