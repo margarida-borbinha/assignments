@@ -5,7 +5,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 description = "First assignment of the FAAST Advance Foundations"
 authors = [
-    {name = "Fernando Cordeiro<fernando@daredata.engineering>"}
+    {name = "Margarida Borbinha<margarida.borbinha@nos.pt>"}
 ]
 dependencies = ["pandas"]
 
@@ -27,4 +27,9 @@ fail_under = 80
 ignore-paths = [
     "life_expectancy/tests/",
     "life_expectancy/setup.py"
+]
+
+[tool.pylint."messages control"]
+disable = [
+   "too-few-public-methods"
 ]
